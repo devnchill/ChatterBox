@@ -7,7 +7,7 @@ const app = express();
 const PORT = 6969;
 const assetPath = path.join(__dirname, "..", "public");
 
-app.set("views", path.join(__dirname, "view"));
+app.set("views", path.join(__dirname, "..", "src", "view"));
 app.set("view engine", "ejs");
 
 app.use(express.static(assetPath));
