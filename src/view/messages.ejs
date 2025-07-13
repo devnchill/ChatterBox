@@ -1,12 +1,17 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
   <body>
     <%-include("navbar",{link:link}) %>
+    <main>
     <% message.forEach((msg)=>{%>
-      <div>
-      <p><%=msg.user%></p>
-      <p><%=msg.text%></p>
-      <p><%=msg.added %></p>
+      <div class="message">
+      <p><%= msg.user %></p>
+      <p><%= msg.text %></p>
+      <p><%= msg.added %></p>
       </div>
     <% }) %>
+    <main>
   </body>
 </html>
