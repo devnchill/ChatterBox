@@ -1,22 +1,13 @@
 import { Router } from "express";
+import { MessageController } from "../controller/messageController";
 
 const indexRouter = Router();
 
-const arrOfMessages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
-
-indexRouter.get("/", (req, res) => {
-  res.render("messages", { message: arrOfMessages });
-});
+indexRouter.get("/", (req, res) =>
+  res.render("messages", {
+    link: { text: "Add a new messgae", href: "/new" },
+    message: MessageController.displayMessages(),
+  }),
+);
 
 export default indexRouter;

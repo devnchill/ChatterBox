@@ -1,12 +1,12 @@
 <html>
   <body>
-  <% message.forEach((msg)=>{%>
+    <%-include("navbar",{link:link}) %>
+    <% message.forEach((msg)=>{%>
       <div>
       <p><%=msg.user%></p>
       <p><%=msg.text%></p>
       <p><%=msg.added %></p>
       </div>
-    <%
-    })%>
+    <% }) %>
   </body>
 </html>
