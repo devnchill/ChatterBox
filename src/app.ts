@@ -26,7 +26,9 @@ app.use("/new", messageRouter);
       console.log("Seeding DB for dev/testing...");
       await seedDB();
     }
-    app.listen(PORT, () => console.log("Server running on port", PORT));
+    app.listen(PORT, "0.0.0.0", () =>
+      console.log("Server running on port", PORT),
+    );
   } catch (err) {
     console.error("App failed to start:", err);
     process.exit(1);
