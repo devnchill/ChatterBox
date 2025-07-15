@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/app.ts",
     "build": "tsc",
+    "seed": "ts-node src/db/seed.ts",
     "start": "node dist/app.js"
   },
   "repository": {

@@ -5,7 +5,10 @@ import { Db } from "../db/query";
 
 export class MessageController {
   private static parseDate(date: Date): string {
-    return date.toString().split(" ").slice(0, 5).join(" ");
+    return date.toLocaleString("en-US", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
   }
 
   static validateMessage = [
