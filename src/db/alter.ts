@@ -9,9 +9,9 @@ export class Db {
 
   public static async addNewMessage(chat: TChat) {
     const insertChat = `
-      INSERT INTO chat (username , text,added) 
-      VALUES ($1,$2,$3); 
+      INSERT INTO chat (username , text) 
+      VALUES ($1,$2); 
 `;
-    await pool.query(insertChat, [chat.username, chat.text, chat.added]);
+    await pool.query(insertChat, [chat.username, chat.text]);
   }
 }

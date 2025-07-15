@@ -1,7 +1,7 @@
 import { TChat } from "../types/chat.types";
 import { Request, Response } from "express";
 import { validationResult, body } from "express-validator";
-import { Db } from "../db/query";
+import { Db } from "../db/alter";
 
 export class MessageController {
   private static parseDate(date: Date): string {
