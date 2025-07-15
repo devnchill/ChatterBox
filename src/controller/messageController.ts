@@ -1,10 +1,27 @@
 import { TChat } from "../types/chat.types";
 import { Request, Response } from "express";
+import { validationResult, body } from "express-validator";
 
 export class MessageController {
   private static parseDate(date: Date): string {
     return date.toString().split(" ").slice(0, 5).join(" ");
   }
+
+  static validateMessage = [
+    body("username")
+      .trim()
+      .notEmpty()
+      .withMessage("Username is required")
+      .isAlpha()
+      .withMessage("Username must contain only letters"),
+
+    body("message")
+      .trim()
+      .notEmpty()
+      .withMessage("Message is required")
+      .isLength({ max: 200 })
+      .withMessage("Message must be under 200 characters"),
+  ];
 
   private static arrOfMessages: TChat[] = [
     {
@@ -38,6 +55,15 @@ export class MessageController {
   };
 
   public static addMessage = (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("error", {
+        error: errors
+          .array()
+          .map((e) => e.msg)
+          .join(", "),
+      });
+    }
     try {
       const body = req.body;
       const chat: TChat = {
