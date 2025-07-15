@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { MessageController } from "../controller/messageController";
+import { Request, Response } from "express";
 
 const messageRouter = Router();
 
-messageRouter.get("/", (req, res) => {
+messageRouter.get("/", (_: Request, res: Response) => {
   res.render("form");
 });
 

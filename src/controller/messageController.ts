@@ -1,6 +1,7 @@
 import { TChat } from "../types/chat.types";
 import { Request, Response } from "express";
 import { validationResult, body } from "express-validator";
+import { Db } from "../db/query";
 
 export class MessageController {
   private static parseDate(date: Date): string {
@@ -23,22 +24,10 @@ export class MessageController {
       .withMessage("Message must be under 200 characters"),
   ];
 
-  private static arrOfMessages: TChat[] = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: new Date(),
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: new Date(),
-    },
-  ];
-
-  public static displayMessages = (req: Request, res: Response) => {
+  public static displayMessages = async (_: Request, res: Response) => {
     try {
-      const parsedMsg = this.arrOfMessages.map((m) => ({
+      const messages = await Db.getAllChats();
+      const parsedMsg = messages.map((m) => ({
         ...m,
         added: this.parseDate(m.added),
       }));
@@ -54,7 +43,7 @@ export class MessageController {
     }
   };
 
-  public static addMessage = (req: Request, res: Response) => {
+  public static addMessage = async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("error", {
@@ -67,11 +56,10 @@ export class MessageController {
     try {
       const body = req.body;
       const chat: TChat = {
-        user: body.username,
+        username: body.username,
         text: body.message,
-        added: new Date(),
       };
-      this.arrOfMessages.push(chat);
+      await Db.addNewMessage(chat);
       console.log("redirecting to /");
       res.redirect("/");
     } catch (err) {
