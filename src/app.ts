@@ -7,8 +7,13 @@ import { seedDB } from "./db/seed";
 import { initDB } from "./db/schema";
 
 const app = express();
-const PORT = process.env.PORT ?? 6969;
 const assetPath = path.join(__dirname, "..", "public");
+
+const PORT = process.env.PORT;
+if (!PORT) {
+  console.error("PORT is not defined in environment.");
+  process.exit(1);
+}
 
 app.set("views", path.join(__dirname, "..", "src", "view"));
 app.set("view engine", "ejs");
