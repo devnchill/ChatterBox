@@ -5,7 +5,7 @@
   <body>
     <%-include("navbar",{link:link}) %>
     <main>
-    <% message.forEach((msg)=>{%>
+    <% messages.forEach((msg)=>{%>
       <div class="message">
       <p><%= msg.user %></p>
       <p><%= msg.text %></p>

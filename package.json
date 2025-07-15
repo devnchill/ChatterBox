@@ -21,6 +21,7 @@
   "homepage": "https://github.com/devnchill/ChatterBox#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0"
   },

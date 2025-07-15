@@ -8,15 +8,6 @@ messageRouter.get("/", (req, res) => {
   res.render("form");
 });
 
-messageRouter.post("/", (req, res) => {
-  const body = req.body;
-  const chat: TChat = {
-    user: body.username,
-    text: body.message,
-    added: new Date(),
-  };
-  MessageController.addMessage(chat);
-  res.redirect("/");
-});
+messageRouter.post("/", MessageController.addMessage);
 
 export default messageRouter;

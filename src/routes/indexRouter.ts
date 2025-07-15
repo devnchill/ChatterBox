@@ -3,11 +3,6 @@ import { MessageController } from "../controller/messageController";
 
 const indexRouter = Router();
 
-indexRouter.get("/", (req, res) =>
-  res.render("messages", {
-    link: { text: "Add a new messgae", href: "/new" },
-    message: MessageController.displayMessages(),
-  }),
-);
+indexRouter.get("/", MessageController.displayMessages);
 
 export default indexRouter;
