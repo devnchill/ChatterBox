@@ -13,4 +13,4 @@ npm i
 npm run dev
 ```
 
-- Open your browser and go to `http://localhost:6969`
+- Open your browser and go to `http://localhost`
