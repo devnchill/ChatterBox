@@ -9,11 +9,7 @@ import { initDB } from "./db/schema";
 const app = express();
 const assetPath = path.join(__dirname, "..", "public");
 
-const PORT = process.env.PORT;
-if (!PORT) {
-  console.error("PORT is not defined in environment.");
-  process.exit(1);
-}
+const PORT = Number(process.env.PORT) || 8080;
 
 app.set("views", path.join(__dirname, "..", "src", "view"));
 app.set("view engine", "ejs");
